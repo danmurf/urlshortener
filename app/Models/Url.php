@@ -23,6 +23,10 @@ class Url
      */
     private $shortenedUrlPath;
 
+    public function __construct() {
+        $this->database = new Database;
+    }
+
     /**
      * Checks whether the specified URL is valid
      * @method isValid
@@ -41,11 +45,29 @@ class Url
      */
     public function shorten($url) {
         $this->originalUrl = $url;
-        $this->shortenedUrlPath = $this->generatePath();
-        if ($this->saveToDatabase()) {
+
+        if (!$this->loadShortenedUrl($url)) {
+            $this->shortenedUrlPath = $this->generatePath();
+            $this->saveToDatabase();
+        }
+
+        return $this->getShortenedUrl();
+    }
+
+    /**
+     * Load the shortened URL from the database, given the full url
+     * @method loadShortenedUrl
+     * @param  string           $fullurl The full URL
+     * @return string|boolean
+     */
+    private function loadShortenedUrl($fullurl) {
+        $this->database->query("SELECT path FROM urls WHERE url = ?", [$fullurl]);
+        if ($this->database->affectedRows() > 0) {
+            $this->shortenedUrlPath = $this->database->result()[0];
             return $this->getShortenedUrl();
         }
         else {
+            //URL doesn't exist in the database
             return false;
         }
     }
@@ -77,7 +99,6 @@ class Url
     private function saveToDatabase() {
         if (strlen($this->originalUrl) > 0 &&
             strlen($this->shortenedUrlPath) > 0) {
-                $this->database = new Database;
                 $this->database->query("INSERT INTO urls (url, path) VALUES (?, ?);", [$this->originalUrl, $this->shortenedUrlPath]);
                 return $this->database->affectedRows() == 1 ? : false;
             }
