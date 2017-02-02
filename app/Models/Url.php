@@ -117,4 +117,32 @@ class Url
             return APP_URL . '/' . $this->shortenedUrlPath;
         }
     }
+
+    /**
+     * Translate a shortened URL back into a full URL
+     * @method fetchFullUrl
+     * @param string            $shortUrl A shortened URL
+     * @return string|boolean   The full URL or false if it doesn't exist
+     */
+    public function fetchFullUrl($shortUrl) {
+        $this->database->query("SELECT url FROM urls WHERE path = ?;", [$this->getPathFromShortUrl($shortUrl)]);
+        if ($this->database->affectedRows() > 0) {
+            return $this->database->result()[0];
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * Extract the path portion of a short URL
+     * @method getPathFromShortUrl
+     * @param  string             $shortUrl A shortened URL
+     * @return string
+     */
+    private function getPathFromShortUrl($shortUrl) {
+        $path = parse_url($shortUrl, PHP_URL_PATH);
+        //Remove the preceeding slash and return
+        return ltrim($path, '/');
+    }
 }
