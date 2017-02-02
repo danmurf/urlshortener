@@ -51,4 +51,21 @@ class UrlTest extends TestCase
 
         $this->assertEquals(1, $database->affectedRows());
     }
+
+    /**
+     * @test
+     * @method returns_same_path_for_urls_which_already_exist_in_the_database
+     */
+    public function returns_same_path_for_urls_which_already_exist_in_the_database() {
+        $originalUrl = 'http://example.com/section/subsection/excellent-article.php?autoplay=true#bestbit3';
+
+        $url = new Url;
+        $firstShortenedUrl = $url->shorten($originalUrl);
+
+        //Clear and run again
+        $url = new Url;
+        $secondShortenedUrl = $url->shorten($originalUrl);
+
+        $this->assertEquals($firstShortenedUrl, $secondShortenedUrl);
+    }
 }
