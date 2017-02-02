@@ -24,7 +24,7 @@ class Url
     }
 
     /**
-     * Generates a random string for the shortened version of a URL
+     * Generates a random string for the shortened version of a URLc
      * @method generatePath
      * @return [type]       [description]
      */

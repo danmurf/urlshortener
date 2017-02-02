@@ -3,6 +3,7 @@ namespace App\Tests\Integration;
 
 use App\Tests\TestCase;
 use App\Models\Url;
+use App\Library\Database;
 
 class UrlTest extends TestCase
 {
@@ -34,5 +35,20 @@ class UrlTest extends TestCase
         //Check that the returned URL is short (defined by the domain + specified shortened path length)
         $expectedShortenedUrlLength = strlen(APP_URL . '/') + SHORTENED_URL_PATH_LENGTH;
         $this->assertEquals($expectedShortenedUrlLength, strlen($shortenedUrl));
+    }
+
+    /**
+     * @test
+     */
+    public function can_save_url_to_the_database() {
+        $originalUrl = 'http://example.com/section/subsection/excellent-article.php?autoplay=true#bestbit';
+
+        $url = new Url;
+        $shortenedUrl = $url->shorten($originalUrl);
+
+        $database = new Database;
+        $database->query("SELECT * FROM urls WHERE url = ?", [$originalUrl]);
+
+        $this->assertEquals(1, $database->affectedRows());
     }
 }
