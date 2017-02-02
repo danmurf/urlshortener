@@ -47,9 +47,9 @@ class UrlTest extends TestCase
         $shortenedUrl = $url->shorten($originalUrl);
 
         //Now fetch the original URL based on the shortened URL
-        $translatedUrl = $url->fetchFullUrl($this->shortenedUrl);
+        $translatedUrl = $url->fetchFullUrl($shortenedUrl);
 
-        $this->assertEquals($this->translatesUrl, $this->originalUrl);
+        $this->assertEquals($originalUrl, $translatedUrl);
     }
 
     /**
