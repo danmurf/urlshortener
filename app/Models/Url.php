@@ -1,8 +1,28 @@
 <?php
 namespace App\Models;
 
+use App\Library\Database;
+
 class Url
 {
+    /**
+     * Database connection instance
+     * @var object
+     */
+    private $database;
+
+    /**
+     * The original, full length URL
+     * @var string
+     */
+    private $originalUrl;
+
+    /**
+     * The path for the redirect
+     * @var string
+     */
+    private $shortenedUrlPath;
+
     /**
      * Checks whether the specified URL is valid
      * @method isValid
@@ -20,13 +40,20 @@ class Url
      * @return string The shortened URL
      */
     public function shorten($url) {
-        return APP_URL . '/' . $this->generatePath();
+        $this->originalUrl = $url;
+        $this->shortenedUrlPath = $this->generatePath();
+        if ($this->saveToDatabase()) {
+            return $this->getShortenedUrl();
+        }
+        else {
+            return false;
+        }
     }
 
     /**
      * Generates a random string for the shortened version of a URLc
      * @method generatePath
-     * @return [type]       [description]
+     * @return string   A random path string
      */
     private function generatePath() {
         $path = '';
@@ -40,5 +67,33 @@ class Url
         }
 
         return $path;
+    }
+
+    /**
+     * Save the current state to the database
+     * @method saveToDatabase
+     * @return boolean
+     */
+    private function saveToDatabase() {
+        if (strlen($this->originalUrl) > 0 &&
+            strlen($this->shortenedUrlPath) > 0) {
+                $this->database = new Database;
+                $this->database->query("INSERT INTO urls (url, path) VALUES (?, ?);", [$this->originalUrl, $this->shortenedUrlPath]);
+                return $this->database->affectedRows() == 1 ? : false;
+            }
+            else {
+                return false;
+            }
+    }
+
+    /**
+     * Get the full, shortened URL
+     * @method getShortenedUrl
+     * @return string A short URL
+     */
+    public function getShortenedUrl() {
+        if (strlen($this->shortenedUrlPath) > 0) {
+            return APP_URL . '/' . $this->shortenedUrlPath;
+        }
     }
 }
