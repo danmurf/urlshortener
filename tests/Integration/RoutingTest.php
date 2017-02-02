@@ -1,9 +1,9 @@
 <?php
 namespace App\Tests\Integration;
 
-use App\Tests\TestCase;
+use App\Tests\SeleniumTestCase;
 
-class RoutingTest extends TestCase
+class RoutingTest extends SeleniumTestCase
 {
     protected function setUp()
     {
