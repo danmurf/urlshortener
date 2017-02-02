@@ -1,3 +1,4 @@
 /vendor/
 .env.php
+.env.testing.php
 .DS_Store
