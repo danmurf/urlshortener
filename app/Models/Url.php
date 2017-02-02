@@ -146,6 +146,11 @@ class Url
         return ltrim($path, '/');
     }
 
+    /**
+     * Make sure a URL has http:// or equivalent
+     * @method addScheme
+     * @param  string   $url A URL with or without a scheme
+     */
     public function addScheme($url) {
         if ($parts = parse_url($url)) {
            if (!isset($parts["scheme"]))
