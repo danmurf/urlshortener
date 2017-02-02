@@ -79,4 +79,28 @@ use PDO;
              return false;
          }
      }
+
+     /**
+      * Start a database transaction
+      * @method startTransaction
+      */
+     public function startTransaction() {
+         $this->connection->beginTransaction();
+     }
+
+     /**
+      * Cancel and rollback any changes since the start of the transaction
+      * @method cancelTransaction
+      */
+     public function cancelTransaction() {
+         $this->connection->rollBack();
+     }
+
+     /**
+      * Commit the changes since the start of the transaction to the database
+      * @method commitTransaction
+      */
+     public function commitTransaction() {
+         $this->connection->commit();
+     }
  }
