@@ -145,4 +145,14 @@ class Url
         //Remove the preceeding slash and return
         return ltrim($path, '/');
     }
+
+    public function addScheme($url) {
+        if ($parts = parse_url($url)) {
+           if (!isset($parts["scheme"]))
+           {
+               $url = 'http://' . $url;
+           }
+        }
+        return $url;
+    }
 }
