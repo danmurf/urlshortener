@@ -7,6 +7,13 @@ Class RedirectController
 {
     public function redirect($shortenedUrl) {
         $url = new Url;
-        echo 'redirecting to ' . $url->fetchFullUrl($shortenedUrl);
+        $fullUrl = $url->fetchFullUrl($shortenedUrl);
+        if (strlen($fullUrl) > 0) {
+            echo 'redirecting to ' . $fullUrl;
+        }
+        else {
+            echo 'page not found';
+        }
+
     }
 }
