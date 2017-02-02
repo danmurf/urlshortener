@@ -40,6 +40,21 @@ class UrlTest extends TestCase
     /**
      * @test
      */
+    public function can_translate_shortened_url_back_into_original_url() {
+        //Store a URL
+        $url = new Url;
+        $originalUrl = "http://example.com/first-stored-url";
+        $shortenedUrl = $url->shorten($originalUrl);
+
+        //Now fetch the original URL based on the shortened URL
+        $translatedUrl = $url->fetchFullUrl($this->shortenedUrl);
+
+        $this->assertEquals($this->translatesUrl, $this->originalUrl);
+    }
+
+    /**
+     * @test
+     */
     public function can_save_url_to_the_database() {
         $originalUrl = 'http://example.com/section/subsection/excellent-article.php?autoplay=true#bestbit2';
 
@@ -54,7 +69,6 @@ class UrlTest extends TestCase
 
     /**
      * @test
-     * @method returns_same_path_for_urls_which_already_exist_in_the_database
      */
     public function returns_same_path_for_urls_which_already_exist_in_the_database() {
         $originalUrl = 'http://example.com/section/subsection/excellent-article.php?autoplay=true#bestbit3';
