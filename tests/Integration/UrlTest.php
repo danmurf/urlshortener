@@ -31,7 +31,7 @@ class UrlTest extends TestCase
         $originalUrl = $url->addScheme($originalUrl);
 
         //Make sure it's now a valid url
-        $this->assertTrue($originalUrl);
+        $this->assertTrue($url->isValid($originalUrl));
     }
 
     /**
