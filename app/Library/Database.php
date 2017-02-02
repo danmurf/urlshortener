@@ -42,7 +42,7 @@ use PDO;
          if (sizeof($parameters) > 0) {
              $position = 1;
              foreach ($parameters as $parameter) {
-                 $this->statement->bindParam($position, $parameter);
+                 $this->statement->bindParam($position, $parameters[$position-1]);
                  $position++;
              }
          }
