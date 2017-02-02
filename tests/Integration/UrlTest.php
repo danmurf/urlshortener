@@ -41,7 +41,7 @@ class UrlTest extends TestCase
      * @test
      */
     public function can_save_url_to_the_database() {
-        $originalUrl = 'http://example.com/section/subsection/excellent-article.php?autoplay=true#bestbit';
+        $originalUrl = 'http://example.com/section/subsection/excellent-article.php?autoplay=true#bestbit2';
 
         $url = new Url;
         $shortenedUrl = $url->shorten($originalUrl);
