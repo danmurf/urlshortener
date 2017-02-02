@@ -23,6 +23,20 @@ class UrlTest extends TestCase
     /**
      * @test
      */
+    public function add_scheme_to_urls_without_them() {
+        $url = new Url;
+
+        $originalUrl = 'example.com';
+
+        $originalUrl = $url->addScheme($originalUrl);
+
+        //Make sure it's now a valid url
+        $this->assertTrue($originalUrl);
+    }
+
+    /**
+     * @test
+     */
     public function can_shorten_url() {
         $originalUrl = 'http://example.com/section/subsection/excellent-article.php?autoplay=true#bestbit';
 
