@@ -16,7 +16,6 @@ use PDO;
      /**
       * Connect to the database
       * @method connect
-      * @return [type]  [description]
       */
      private function connect() {
          $destination = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8";
@@ -32,8 +31,8 @@ use PDO;
      /**
       * Run a database query
       * @method query
-      * @param  [type] $sql        [description]
-      * @param  array  $parameters [description]
+      * @param  string $sql        An SQL query
+      * @param  array  $parameters An array of data to be swapped with '?' in the SQL query
       * @return object             The database object
       */
      public function query($sql, $parameters = array()) {
