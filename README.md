@@ -25,4 +25,4 @@ CREATE TABLE `urls` (
 ```
 ## Testing
 
-PHPUnit, Selenium and the Firefox webdriver are used for testing. These will all need to be installed and configured correctly to run the tests.
+PHPUnit, Selenium and the Firefox webdriver are used for testing. These will all need to be installed and configured to run the tests. Note: running the tests will also clear the development database.
