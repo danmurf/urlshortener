@@ -65,6 +65,7 @@ class Router {
      * @param  array   $destination The URL path the user is accessing
      */
     private function setDestinationParameters($destination) {
+        //@todo Add support for multiple parameters
         $parameters = explode('/', $this->path());
         $destination['parameter'] = $parameters[1];
         return $destination;
@@ -77,6 +78,7 @@ class Router {
      * @return array        The destination controller, method, and parameter
      */
     private function checkForMatch() {
+        //@todo Add route checking mechanism which takes into account parameters
         foreach ($this->routes[$this->requestType()] as $path => $destination) {
             if ($this->path() === $path) {
                 return $destination;
@@ -102,8 +104,8 @@ class Router {
      * @param  array        $destination Destination controller, method, and parameter
      */
     private function handleRequest($destination) {
-
         //Fetch the parameter, if there was one
+        //@todo Add support for multiple parameters
         if (isset($destination['parameter'])) {
             $parameter = $destination['parameter'];
         }

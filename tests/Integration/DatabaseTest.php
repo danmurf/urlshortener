@@ -4,6 +4,8 @@ namespace App\Tests\Integration;
 use App\Tests\TestCase;
 use App\Library\Database;
 
+//@todo Refactor tests / reduce boilerplate code
+
 class DatabaseTest extends TestCase
 {
     private $database;
