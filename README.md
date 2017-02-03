@@ -4,7 +4,7 @@ Turn long URLs into shorter, more sharable ones.
 
 ---
 
-The current environment variables are set up to work with the domain http://urlshortener.dev for local development. The entry point for the app is `public/index.php`. There is an included .htaccess which should enable mod_rewrite, or you can use the nginx equivalent.
+The current environment variables are set up to work with the domain http://urlshortener.dev for local development. The entry point for the app is `public/index.php`. There is an included .htaccess (copied from Laravel) which should enable mod_rewrite, or you can use the nginx equivalent.
 
 The app and database settings are all stored in `.env.php`.
 
