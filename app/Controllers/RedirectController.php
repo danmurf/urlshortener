@@ -12,7 +12,8 @@ Class RedirectController
             header('Location:' . $fullUrl);
         }
         else {
-            echo 'page not found';
+            header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+            include '../resources/views/404.php';
         }
 
     }
