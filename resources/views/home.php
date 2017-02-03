@@ -6,24 +6,37 @@
         <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
-        <h1><?=APP_NAME?></h1>
 
-        <?php if (!isset($shortenedUrl)) { ?>
+        <div id="content">
 
-        <p>Enter a URL to shorten it:</p>
-        <form action="/" method="post">
-            <label for="url">URL</label>
-            <input id="url" type="text" name="url" value="">
-            <input type="submit" name="submit" value="Shorten">
-            <?php if (isset($error)) { ?>
-            <span id="error"><?=$error?><span>
-            <?php } ?>
-        </form>
+            <h1><?=APP_NAME?></h1>
 
-        <?php } else { ?>
+            <div id="shortener-box">
 
-            <p>Your shortened URL is: <?=$shortenedUrl?></p>
+                <?php if (!isset($shortenedUrl)) { ?>
 
-        <?php } ?>
+                <form action="/" method="post">
+                    <label <?php if(isset($error)) { ?>class="error" <?php }?>for="url">URL</label>
+                    <input class="text<?php if(isset($error)) { ?> error<?php }?>" id="url" type="text" name="url" value="">
+                    <input class="submit" type="submit" name="submit" value="Shorten">
+                    <?php if (isset($error)) { ?>
+                        <div>
+                            <p id="error"><?=$error?><p>
+                        </div>
+                    <?php } ?>
+                </form>
+
+                <?php } else { ?>
+
+                    <p>Your shortened URL is:</p>
+
+                    <p id="shortened-url"><?=$shortenedUrl?></p>
+
+                    <p><a href="/">Shorten another URL</a></p>
+
+                <?php } ?>
+            </div>
+
+        </div>
     </body>
 </html>

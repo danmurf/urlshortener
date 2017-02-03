@@ -1,0 +1,64 @@
+body {
+    font-family: Helvetica, sans-serif;
+    height: 100%;
+    padding-top: 60px;
+    background-color: #bdd9ff;
+}
+
+h1 {
+    text-align: center;
+    color: #447ed6;
+}
+
+p {
+    text-align: center;
+    color: #447ed6;
+}
+
+a, a:visited {
+    color: #2f4483;
+}
+
+#content {
+}
+
+#shortener-box {
+    margin-top: 40px;
+    text-align: center;
+}
+
+label {
+    display: none;
+}
+
+input.text {
+    padding: 5px;
+    width: 40%;
+    font-family: Courier, sans-serif;
+    font-size: 1em;
+    border: 1px solid grey;
+}
+
+input.text.error {
+    border-color: #ff614e;
+    border-width: 1px;
+}
+
+input.submit {
+    border: 1px solid #447ed6;
+    padding: 5px;
+    font-size: 1em;
+    color: #447ed6;
+    background-color: #9abbdb;
+    font-family: Courier, sans-serif;
+}
+
+#error {
+    color: #ff614e;
+    font-weight: bold;
+}
+
+#shortened-url {
+    font-size: 1.7em;
+    color: #2f4483;
+}
