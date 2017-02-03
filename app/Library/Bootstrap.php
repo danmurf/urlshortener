@@ -9,6 +9,14 @@ use App\Library\Router;
 require_once '../.env.php';
 
 /**
+ * Make sure errors aren't shown in production
+ */
+if (ENVIRONMENT == 'production') {
+    error_reporting(0);
+    //@todo Make sure errors are being logged elsewhere
+}
+
+/**
  * Fire up the router
  */
 $router = new Router();
