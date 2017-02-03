@@ -16,7 +16,7 @@ class RedirectionTest extends SeleniumTestCase
      * @test
      */
     public function user_is_redirected_when_visiting_shortened_url() {
-        $originalUrl = 'http://example.com';
+        $originalUrl = 'http://example.com/';
 
         $url = new Url;
         $shortenedUrl = $url->shorten($originalUrl);
