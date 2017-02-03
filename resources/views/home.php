@@ -35,8 +35,8 @@
                     <p><a href="/">Shorten another URL</a></p>
 
                 <?php } ?>
-            </div>
+            </div><!--/#shortener-box-->
 
-        </div>
+        </div><!--/#content-->
     </body>
 </html>
