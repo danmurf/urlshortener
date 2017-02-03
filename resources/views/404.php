@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Page not found</title>
+        <title><?=APP_NAME?> | Page not found</title>
+        <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
         <h1>Page not found</h1>
