@@ -15,13 +15,13 @@ class Url
      * The original, full length URL
      * @var string
      */
-    private $originalUrl;
+    public $originalUrl;
 
     /**
      * The path for the redirect
      * @var string
      */
-    private $shortenedUrlPath;
+    public $shortenedUrlPath;
 
     public function __construct() {
         $this->database = new Database;

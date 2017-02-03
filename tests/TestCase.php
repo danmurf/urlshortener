@@ -2,7 +2,7 @@
 namespace App\Tests;
 
 require_once './vendor/autoload.php';
-require_once './.env.testing.php';
+require_once './.env.php';
 
 use App\Library\Database;
 

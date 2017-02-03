@@ -9,7 +9,7 @@ Class RedirectController
         $url = new Url;
         $fullUrl = $url->fetchFullUrl($shortenedUrl);
         if (strlen($fullUrl) > 0) {
-            echo 'redirecting to ' . $fullUrl;
+            header('Location:' . $fullUrl);
         }
         else {
             echo 'page not found';
